@@ -155,6 +155,7 @@ func (mh *messageHandler) onEventFrame(evt *gomavlib.EventFrame) {
 			if key.channel == evt.Channel {
 				log.Printf("Warning: channel %s attempted to send message to itself, discarding", key.channel)
 			} else {
+				log.Printf("Routing message to %s", key)
 				mh.node.WriteFrameTo(key.channel, evt.Frame) //nolint:errcheck
 				return
 			}
